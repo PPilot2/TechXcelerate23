@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="title">{% block title %} Users {% endblock %}</h1>
+    <div class="content">
+        {% for user in users %}
+            <div class="student">
+                <p><b>#{{ user.id }}</b></p>
+                <b>
+                    <p class="name">
+                        <a href="{{ url_for('user', user_id=user.id) }}">
+                            {{ user.firstname }} {{ user.lastname }}
+                        </a>
+                    </p>
+                </b>
+                <!-- <p>{{ user.age }} years old.</p> -->
+                <p>{{ user.email }}</p>
+                <p>Joined: {{ user.created_at }}</p>
+                <div class="bio">
+                    <h4>Bio</h4>
+                    <p>{{ user.bio }}</p>
+                </div>
+                <a href="{{ url_for('edit', user_id=user.id )}}">Edit</a>
+
+                <hr>
+                <form method="post" action="{{ url_for('delete', user_id=user.id) }}">
+                    <input type="submit" value="Delete User" onclick="return confirm('Are you sure you want to delete this user?')">
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
