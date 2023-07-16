@@ -78,6 +78,20 @@ class User(db.Model):
 	email = db.Column(db.String(80), unique=True, nullable=False)
 	created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 	bio = db.Column(db.Text)
+	city = db.Column(db.String(255), nullable=False)
+	houseSize = db.Column(db.Integer(25000), nullable=False)
+	electricityPerMonth = db.Column(db.Integer(1000), nullable=False)
+	travelType = db.Column(db.Integer(2), nullable=True)
+	annMileage = db.Column(db.Integer(30000), nullable=True)
+	MPGe = db.Column(db.Integer(300), nullable=True)
+	electricYN = db.Column(db.Integer(2), nullable=False)
+	yearlyHoursFlown = db.Column(db.Integer(15000), nullable=False)
+	animalProductsEaten = db.Column(db.Integer(100), nullable=False)
+	majorityConsumedMeat = db.Column(db.String(255), nullable=True)
+	clothesBoughtPerYear = db.Column(db.Integer(1000), nullable=False)
+	wasteProduced = db.Column(db.Integer(5), nullable=False)
+	compostYN = db.Column(db.String(255), nullable=False)
+	recycleYN = db.Column(db.String(255), nullable=False)
 
 	def _repr_(self):
 		return f"<User> {self.firstname}>"
