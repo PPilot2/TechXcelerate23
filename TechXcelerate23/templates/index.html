@@ -3,30 +3,109 @@
 {% block content %}
     <h1 class="title">{% block title %} Users {% endblock %}</h1>
     <div class="content">
-        {% for user in users %}
-            <div class="student">
-                <p><b>#{{ user.id }}</b></p>
-                <b>
-                    <p class="name">
-                        <a href="{{ url_for('user', user_id=user.id) }}">
-                            {{ user.firstname }} {{ user.lastname }}
-                        </a>
-                    </p>
-                </b>
-                <!-- <p>{{ user.age }} years old.</p> -->
-                <p>{{ user.email }}</p>
-                <p>Joined: {{ user.created_at }}</p>
-                <div class="bio">
-                    <h4>Bio</h4>
-                    <p>{{ user.bio }}</p>
-                </div>
-                <a href="{{ url_for('edit', user_id=user.id )}}">Edit</a>
-
-                <hr>
-                <form method="post" action="{{ url_for('delete', user_id=user.id) }}">
-                    <input type="submit" value="Delete User" onclick="return confirm('Are you sure you want to delete this user?')">
-                </form>
-            </div>
-        {% endfor %}
+        <form method="post">
+            <p>Where do you live? (City, State):</p>
+            <select id="cityList" name="cityList" required>
+                <option value="Fairbanks, AK">Fairbanks, AK</option>
+                <option value="Juneau, AK">Juneau, AK</option>
+                <option value="Anchorage, AK">Anchorage, AK</option>
+                <option value="Barrow, AK">Barrow, AK</option>
+                <option value="Grand Forks, ND">Grand Forks, ND</option>
+                <option value="Minneapolis, MN">Minneapolis, MN</option>
+                <option value="Milwaukee, WI">Milwaukee, WI</option>
+                <option value="Chicago, IL">Chicago, IL</option>
+                <option value="Indianapolis, IN">Indianapolis, IN</option>
+                <option value="New York City, NY">New York City, NY</option>
+                <option value="Boston, MA">Boston, MA</option>
+                <option value="Philadelphia, PA">Philadelphia, PA</option>
+                <option value="Pittsburgh, PA">Pittsburgh, PA</option>
+                <option value="Cleveland, OH">Cleveland, OH</option>
+                <option value="St. Louis, MO">St. Louis, MO</option>
+                <option value="Kansas City, MO">Kansas City, MO</option>
+                <option value="Denver, CO">Denver, CO</option>
+                <option value="Dallas, TX">Dallas, TX</option>
+                <option value="Houston, TX">Houston, TX</option>
+                <option value="Atlanta, GA">Atlanta, GA</option>
+                <option value="Miami, FL">Miami, FL</option>
+                <option value="Los Angeles, CA">Los Angeles, CA</option>
+                <option value="San Francisco, CA">San Francisco, CA</option>
+                <option value="Seattle, WA">Seattle, WA</option>
+                <option value="Portland, OR">Portland, OR</option>
+            </select>
+            <br>
+            <label for="square_footage">How big is your house? (Square footage): </label>
+            <input type="number" name="square_footage" min="0" required>
+            <br>
+            <label for="electricity_use">How much electricity do you use every month? (kWh): </label>
+            <input type="number" name="electricity_use" min="0" required>
+            <br>
+            <label>Do you travel by motorcycle, car, or public transport?</p>
+            <select name="vehicle_type" id="vehicle_type" required>
+                <option value=1>Motorcycle</option>
+                <option value=2>Car</option>
+                <option value=3>Public Transport</option>
+                <option value=4>Other</option>
+            </select>
+            <br>
+            <label for="annual_mileage">What is your annual mileage? (If you drive a car or motorcycle)</label>
+            <input type="number" name="annual_mileage" min="0" id="annual_mileage">
+            <br>
+            <p>Is your car an electric car?</p>
+            <select name="is_electric" id="is_electric">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br>
+            <label for="mpg">How efficient is your car? (MPG/MPGe):</label>
+            <input type="number" name="mpg" id="mpg" min="0">
+            <br>
+            <p>Do you travel by bus, train, or subway?</p>
+            <select name="public_type" id="public_type">
+                <option value=1>Bus</option>
+                <option value=2>Train</option>
+                <option value=3>Subway</option>
+                <option value=4>Other</option>
+            </select>
+            <br>
+            <label for="week_mileage">How many miles do you travel with public transport in a week?</label>
+            <input type="number" name="week_mileage" min="0" id="week_mileage" required>
+            <br>
+            <label for="flying_hours">How many hours a year do you fly?</label>
+            <input type="number" name="flying_hours" id="flying_hours" min="0" required>
+            <br>
+            <label for="frequency_of_meat">How many times a week do you eat meat?</label>
+            <input type="number" name="frequency_of_meat" id="frequency_of_meat" min="0" max="7" required>
+            <br>
+            <p>What type of meat do you consume the most?</p>
+            <select name="meat_type" id="meat_type">
+                <option value="Beef">Beef</option>
+                <option value="Chicken">Chicken</option>
+                <option value="Pork">Pork</option>
+                <option value="Lamb">Lamb</option>
+            </select>
+            <br>
+            <label for="clothes">How many clothes do you buy per year?</label>
+            <input type="number" name="clothes" id="clothes" min="0">
+            <br>
+            <p>How much waste do you produce compared to your neighbors?</p>
+            <select name="waste_comparison" id="waste_comparison">
+                <option value=1>Much More</option>
+                <option value=2>A Little More</option>
+                <option value=3>Same</option>
+                <option value=4>Less</option>
+                <option value=5>Much Less</option>
+            </select>
+            <br>
+            <p>Do you compost organic waste?</p>
+            <select name="compost_organic" id="compost_organic">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br>
+            <label for="recycle_percentage">What percentage of waste do you recycle?</label>
+            <input type="number" name="recycle_percentage" id="recycle_percentage" min="0" max="100">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
     </div>
 {% endblock %}
