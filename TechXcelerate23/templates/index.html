@@ -48,19 +48,19 @@
             </select>
             <br>
             <label for="annual_mileage">What is your annual mileage? (If you drive a car or motorcycle)</label>
-            <input type="number" name="annual_mileage" min="0" id="annual_mileage">
+            <input type="number" name="annual_mileage" min="0" id="annual_mileage" required>
             <br>
             <p>Is your car an electric car?</p>
-            <select name="is_electric" id="is_electric">
+            <select name="is_electric" id="is_electric" required>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
             </select>
             <br>
             <label for="mpg">How efficient is your car? (MPG/MPGe):</label>
-            <input type="number" name="mpg" id="mpg" min="1">
+            <input type="number" name="mpg" id="mpg" min="1" required>
             <br>
             <p>Do you travel by bus, train, or subway?</p>
-            <select name="public_type" id="public_type">
+            <select name="public_type" id="public_type" required>
                 <option value=1>Bus</option>
                 <option value=2>Train</option>
                 <option value=3>Subway</option>
@@ -77,7 +77,7 @@
             <input type="number" name="frequency_of_meat" id="frequency_of_meat" min="0" max="7" required>
             <br>
             <p>What type of meat do you consume the most?</p>
-            <select name="meat_type" id="meat_type">
+            <select name="meat_type" id="meat_type" required>
                 <option value="Beef">Beef</option>
                 <option value="Chicken">Chicken</option>
                 <option value="Pork">Pork</option>
@@ -85,10 +85,10 @@
             </select>
             <br>
             <label for="clothes">How many clothes do you buy per year?</label>
-            <input type="number" name="clothes" id="clothes" min="0">
+            <input type="number" name="clothes" id="clothes" min="0" required>
             <br>
             <p>How much waste do you produce compared to your neighbors?</p>
-            <select name="waste_comparison" id="waste_comparison">
+            <select name="waste_comparison" id="waste_comparison" required>
                 <option value=1>Much More</option>
                 <option value=2>A Little More</option>
                 <option value=3>Same</option>
@@ -97,13 +97,13 @@
             </select>
             <br>
             <p>Do you compost organic waste?</p>
-            <select name="compost_organic" id="compost_organic">
+            <select name="compost_organic" id="compost_organic" required>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
             </select>
             <br>
             <label for="recycle_percentage">What percentage of waste do you recycle?</label>
-            <input type="number" name="recycle_percentage" id="recycle_percentage" min="0" max="100">
+            <input type="number" name="recycle_percentage" id="recycle_percentage" min="0" max="100" required>
             <br><br>
             <input type="submit" value="Submit">
         </form>
