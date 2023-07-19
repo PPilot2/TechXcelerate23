@@ -30,7 +30,10 @@ def index():
 
 @app.route('/results')
 def results():
-    return render_template('results.html', results=resultsText)
+    try:
+        return render_template('results.html', results=resultsText)
+    except NameError:
+        return render_template('index.html')
 
 cities = [
     "Fairbanks, AK", "Juneau, AK", "Anchorage, AK", "Barrow, AK", "Grand Forks, ND",
