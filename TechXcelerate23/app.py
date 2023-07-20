@@ -132,7 +132,7 @@ def calculate_carbon_footprint():
             q4 = (annual_mileage * fcr * 200) / 10000
 
     else:
-
+        # Lines 137 to 142 are still broken
         miles_in_week = None
         if public_type == 1:
             q4 = (miles_in_week * 52) * (1 / 150) / 100
@@ -141,23 +141,23 @@ def calculate_carbon_footprint():
 
         else: q4 = (miles_in_week * 52) * (1/300) / 100
 
-        q5 = (flying_hours * 0.5 * 2.7) / 2000
+    q5 = (flying_hours * 0.5 * 2.7) / 2000
 
-        if frequency_of_meat > 0:
+    if frequency_of_meat > 0:
 
-            meat_intensity = get_meat_intensity(meat_type)
-            q6 = (frequency_of_meat * 52 * meat_intensity) / 1000
+        meat_intensity = get_meat_intensity(meat_type)
+        q6 = (frequency_of_meat * 52 * meat_intensity) / 1000
 
-        else:
-            q6 = 0
+    else:
+        q6 = 0
 
-        q7 = (clothes * 10) / 1000
+    q7 = (clothes * 10) / 1000
 
-        q8 = get_waste_comparison_value(waste_comparison)
+    q8 = get_waste_comparison_value(waste_comparison)
 
-        q9 = -1.6 if compost_organic.lower() == 'yes' else 0
+    q9 = -1.6 if compost_organic.lower() == 'yes' else 0
 
-        q10 = 3.2 - (3.2 * recycle_percentage / 100)
+    q10 = 3.2 - (3.2 * recycle_percentage / 100)
 
     carbon_footprint = q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9 + q10
 
