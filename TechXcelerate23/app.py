@@ -112,11 +112,17 @@ def calculate_carbon_footprint():
     print("This calculator is only available for residents in the United States as various factors differ drastically in different countries.")
     print("Note: this calculator does not provide an accurate value, it only provides a rough estimate of your carbon footprint.")
 
-    hdd = get_heating_degree_days(city)
-    q2 = 0.0000002 * int(square_footage) * hdd
-    
-    carbon_intensity = 0.85
-    q3 = (electricity_use * carbon_intensity * 12) / 1000
+    oil_usage = float(input("How much heating oil do you use in a month? (gallons)"))
+    q1 = (oil_usage*12/10.19)/1000
+
+    gas_usage = float(input("How much therms of gas do you use in a month? "))
+# tell the user that they can find it on their monthly gas bill
+    q2 = gas_usage*0.00529*12
+
+	
+    electricity_use = float(input("How much electricity do you use every month? (kWh): "))
+  
+    q3 = (electricity_use * 12*0.000433)
 
     if vehicle_type == 1:
         fcr = 1 / mpg
