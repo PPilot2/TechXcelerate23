@@ -175,7 +175,13 @@ def calculate_carbon_footprint(city, oil_usage, gas_usage, electricity_use, vehi
   q10 = 3.2 - (3.2 * recycle_percentage / 100)
   carbon_footprint = q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9 + q10
   carbon_footprint = round(carbon_footprint, 1)
+  acres_of_trees = carbon_footprint*1.18644
+  acres_of_trees = round(acres_of_trees, 1)
+  tree_seedlings = carbon_footprint * 16.44
+  tree_seedlings = round(tree_seedlings, 1)
   print(f"\nYour estimated carbon annual footprint is {carbon_footprint} tons CO2e per year.")
+
+  print(f"\nYour carbon footprint is equivalent to carbon sequestered by:\n{tree_seedlings} tree seedlings grown for 10 years\nOR {acres_of_trees}\nAcres of U.S forests in one year.")
 
 if __name__ == '__main__':
   app.run()
