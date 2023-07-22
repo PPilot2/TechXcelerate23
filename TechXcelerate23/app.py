@@ -1,13 +1,13 @@
 import os
-from flask import Flask, session, render_template, url_for, redirect, request
+from flask import Flask, render_template, url_for, redirect, request
 # To do: Add fields to frontend
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-  # global city, square_footage, electricity_use, vehicle_type, annual_mileage, is_electric, mpg, public_type, week_mileage, flying_hours, frequency_of_meat, meat_type, clothes, waste_comparison, compost_organic, recycle_percentage
+#   global city, electricity_use, vehicle_type, annual_mileage, is_electric, mpg, flying_hours, frequency_of_meat, meat_type, clothes, waste_comparison, compost_organic, recycle_percentage
   if request.method == 'POST':
-    city = request.form['city_list']
+    city = request.form['cityList']
     oil_usage = int(request.form['oil_usage'])
     gas_usage = int(request.form['gas_usage'])
     # square_footage = int(request.form['square_footage'])
@@ -31,10 +31,10 @@ def index():
   else:
     return render_template('index.html')
 
-@app.route('/results')
+@app.route('/results', methods=['GET', 'POST'])
 def results():
   try:
-    return render_template('results.html', results=resultsText)
+    return render_template('results.html', results=carbonFootprintText)
   except NameError:
     return render_template('index.html')
 carbon_factor = 0
@@ -98,11 +98,12 @@ def get_waste_comparison_value(waste_comparison):
   return comparison_data.get(waste_comparison, 0)
 
 def calculate_carbon_footprint(city, oil_usage, gas_usage, electricity_use, vehicle_type, annual_mileage, mpg, fuel, is_electric, flying_hours, frequency_of_meat, meat_type, clothes, waste_comparison, compost_organic, recycle_percentage):
+  global carbonFootprintText
   # print("This calculator is only available for residents in the United States as various factors differ drastically in different countries.")
   # print("Note: this calculator does not provide an accurate value it only provides a rough estimate of your carbon footprint")
   # print(cities)
   # city = input("Where do you live? (City, State): ")
-  oil_usage = float(input("How much heating oil do you use in a month? (gallons) "))
+  # oil_usage = float(input("How much heating oil do you use in a month? (gallons) "))
   q1 = (oil_usage * 12 / 10.19) / 1000
   # gas_usage = float(input("How much therms of gas do you use in a month? "))
   # tell the user that they can find it on their monthly gas bill
@@ -179,9 +180,7 @@ def calculate_carbon_footprint(city, oil_usage, gas_usage, electricity_use, vehi
   acres_of_trees = round(acres_of_trees, 1)
   tree_seedlings = carbon_footprint * 16.44
   tree_seedlings = round(tree_seedlings, 1)
-  print(f"\nYour estimated carbon annual footprint is {carbon_footprint} tons CO2e per year.")
-
-  print(f"\nYour carbon footprint is equivalent to carbon sequestered by:\n{tree_seedlings} tree seedlings grown for 10 years\nOR {acres_of_trees}\nAcres of U.S forests in one year.")
+  carbonFootprintText = f"\nYour estimated carbon annual footprint is {carbon_footprint} tons CO2e per year.\nYour carbon footprint is equivalent to carbon sequestered by:\n{tree_seedlings} tree seedlings grown for 10 years\nOR {acres_of_trees}\nAcres of U.S forests in one year."
 
 if __name__ == '__main__':
   app.run()
